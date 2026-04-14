@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Interview Mocker
+
+AI Interview Mocker is a web application that helps users practice mock interviews using AI-generated questions and feedback.
+
+---
+
+## Features
+
+* Generate interview questions based on job role and tech stack
+* Upload resume (PDF) to generate personalized questions
+* View previous interviews
+* Track progress using charts
+* Get AI-based feedback and performance analysis
+* User authentication using Clerk
+
+---
+
+## Tech Stack
+
+* Next.js (App Router)
+* React
+* Tailwind CSS
+* PostgreSQL (Neon DB)
+* Drizzle ORM
+* Clerk Authentication
+* Google Gemini API
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Jatinsharma3/ai-interview-mocker.git
+cd ai-interview-mocker
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Setup environment variables
+
+Create a `.env` file in the root folder and add:
+
+```env
+DATABASE_URL=your_database_url
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+```
+
+---
+
+### 4. Run the project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+You can deploy this project on Vercel:
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to GitHub
+2. Import the project into Vercel
+3. Add environment variables
+4. Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
+* Database queries are handled through API routes (backend)
+* Client components use `fetch()` to communicate with APIs
+* Environment variables are used to keep sensitive data secure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Future Improvements
+
+* Add voice-based interview
+* Improve UI design
+* Add more analytics
+
+---
+
+## Author
+
+Jatin Sharma
+GitHub: https://github.com/Jatinsharma3
