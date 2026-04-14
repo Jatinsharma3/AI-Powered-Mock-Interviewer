@@ -77,7 +77,7 @@ export default function Home() {
 
           <button
             onClick={() => setActiveTab("tech")}
-            className={`px-6 py-2 rounded-full ${
+            className={`px-6 py-2 rounded-full cursor-pointer ${
               activeTab === "tech"
                 ? "bg-purple-600 text-white"
                 : "bg-gray-200"
@@ -88,7 +88,7 @@ export default function Home() {
 
           <button
             onClick={() => setActiveTab("aptitude")}
-            className={`px-6 py-2 rounded-full ${
+            className={`px-6 py-2 rounded-full cursor-pointer ${
               activeTab === "aptitude"
                 ? "bg-purple-600 text-white"
                 : "bg-gray-200"
@@ -99,7 +99,7 @@ export default function Home() {
 
           <button
             onClick={() => setActiveTab("interview")}
-            className={`px-6 py-2 rounded-full ${
+            className={`px-6 py-2 rounded-full cursor-pointer ${
               activeTab === "interview"
                 ? "bg-purple-600 text-white"
                 : "bg-gray-200"

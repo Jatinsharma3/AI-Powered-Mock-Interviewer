@@ -1,8 +1,8 @@
 "use client"
 
-import { db } from "@/utils/db"
-import { UserAnswer } from "@/utils/schema"
-import { eq } from "drizzle-orm"
+// import { db } from "@/utils/db"
+// import { UserAnswer } from "@/utils/schema"
+// import { eq } from "drizzle-orm"
 import React, { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 
@@ -22,26 +22,27 @@ function Feedback() {
     GetFeedback()
   }, [])
 
-  const GetFeedback = async () => {
-    const result = await db
-      .select()
-      .from(UserAnswer)
-      .where(eq(UserAnswer.mockIdRef, params.mockId))
-      .orderBy(UserAnswer.id)
+const GetFeedback = async () => {
+  const res = await fetch("/api/feedback", {
+    method: "POST",
+    body: JSON.stringify({ mockId: params.mockId }),
+  });
 
-    const uniqueQuestionsMap = new Map()
+  const result = await res.json();
 
-    result.forEach((item) => {
-      const key = `${item.question}-${item.userEmail}`
-      if (!uniqueQuestionsMap.has(key)) {
-        uniqueQuestionsMap.set(key, item)
-      }
-    })
+  const uniqueQuestionsMap = new Map();
 
-    const uniqueFeedback = Array.from(uniqueQuestionsMap.values())
+  result.forEach((item) => {
+    const key = `${item.question}-${item.userEmail}`;
+    if (!uniqueQuestionsMap.has(key)) {
+      uniqueQuestionsMap.set(key, item);
+    }
+  });
 
-    setFeedbackList(uniqueFeedback)
-  }
+  const uniqueFeedback = Array.from(uniqueQuestionsMap.values());
+
+  setFeedbackList(uniqueFeedback);
+};
 
   const overallRating =
     feedbackList?.length > 0

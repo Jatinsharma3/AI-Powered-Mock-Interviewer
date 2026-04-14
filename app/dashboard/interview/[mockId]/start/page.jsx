@@ -1,8 +1,8 @@
 "use client"
 
-import { db } from '@/utils/db'
-import { MockInterview } from '@/utils/schema'
-import { eq } from 'drizzle-orm'
+// import { db } from '@/utils/db'
+// import { MockInterview } from '@/utils/schema'
+// import { eq } from 'drizzle-orm'
 import React, { useEffect, useState } from 'react'
 import { useParams } from "next/navigation"
 import QuestionSection from './_components/QuestionSection'
@@ -27,25 +27,32 @@ function StartInterview() {
 
   },[mockId])
 
-  const GetInterviewDetails = async () => {
+const GetInterviewDetails = async () => {
+  try {
+    const res = await fetch("/api/start-interview", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ mockId }),
+    });
 
-    const result = await db
-      .select()
-      .from(MockInterview)
-      .where(eq(MockInterview.mockId, mockId))
+    const data = await res.json();
 
-    if(!result || result.length===0){
-      console.log("No interview found")
-      return
+    if (!data) {
+      console.log("No interview found");
+      return;
     }
 
-    const jsonMockResp = JSON.parse(result[0].jsonMockResp)
+    const jsonMockResp = JSON.parse(data.jsonMockResp);
 
-    console.log(jsonMockResp)   //  Ab Array(5) ayega
+    setMockInterviewQuestion(jsonMockResp);
+    setInterviewData(data);
 
-    setMockInterviewQuestion(jsonMockResp)
-    setInterviewData(result[0])
+  } catch (error) {
+    console.error("Error:", error);
   }
+};
 
   const handleSaveSuccess = () => {
     if (activeQuestionIndex < (mockInterviewQuestion?.length - 1)) {

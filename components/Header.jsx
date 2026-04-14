@@ -61,7 +61,7 @@ function Header() {
         {/* If user NOT logged in */}
         <SignedOut>
           <SignInButton mode="modal">
-            <button className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition">
+            <button className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition cursor-pointer">
               Sign In
             </button>
           </SignInButton>
